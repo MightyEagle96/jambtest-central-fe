@@ -12,7 +12,7 @@ function CentrePage() {
     pageSize: 50, // rows per page
   });
   const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [rowCount, setRowCount] = useState(0);
   const getData = async () => {
     const { data, error } = await httpService("centre/viewallcentres", {
@@ -46,6 +46,19 @@ function CentrePage() {
     { field: "CentreCapacity", headerName: "Centre Capacity", width: 200 },
     { field: "AdminName", headerName: "Admin Name", width: 250 },
     { field: "AdminPhone", headerName: "Admin Phone", width: 200 },
+    {
+      field: "createdAt",
+      headerName: "Created At",
+      width: 200,
+      renderCell: (params) => new Date(params.value).toLocaleString(),
+    },
+    {
+      field: "lastCentreUpload",
+      headerName: "Last Centre Upload",
+      width: 200,
+      renderCell: (params) =>
+        params.value ? new Date(params.value).toLocaleString() : "-",
+    },
   ];
 
   const importCentres = async () => {
@@ -75,7 +88,7 @@ function CentrePage() {
         </div>
         <div>
           <Button onClick={importCentres} loading={loading}>
-            Pull new centres
+            import new centres
           </Button>
         </div>
       </div>
