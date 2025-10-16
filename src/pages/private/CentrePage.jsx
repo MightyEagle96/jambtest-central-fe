@@ -1,9 +1,10 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { httpService } from "../../httpService";
 import { useState } from "react";
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { toast } from "react-toastify";
 
 function CentrePage() {
   const [paginationModel, setPaginationModel] = useState({
@@ -11,8 +12,10 @@ function CentrePage() {
     pageSize: 50, // rows per page
   });
   const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(0);
+  const [rowCount, setRowCount] = useState(0);
   const getData = async () => {
-    const { data } = await httpService("centre/viewallcentres", {
+    const { data, error } = await httpService("centre/viewallcentres", {
       params: {
         page: paginationModel.page + 1,
         limit: paginationModel.pageSize,
@@ -20,8 +23,13 @@ function CentrePage() {
     });
 
     if (data) {
+      setRowCount(data.total);
       setRows(data.results);
       console.log(data);
+    }
+
+    if (error) {
+      console.log(error);
     }
   };
 
@@ -39,15 +47,51 @@ function CentrePage() {
     { field: "AdminName", headerName: "Admin Name", width: 250 },
     { field: "AdminPhone", headerName: "Admin Phone", width: 200 },
   ];
+
+  const importCentres = async () => {
+    setLoading(true);
+    const { data, error } = await httpService.get("centre/importcentres");
+    if (data) {
+      toast.success(
+        `${data.message}. \nTotal Fetched: ${data.totalFetched}, \nAlready Exists: ${data.alreadyExists}, \nNewly Imported: ${data.newlyImported}`
+      );
+      getData();
+    }
+
+    if (error) {
+      toast.error(
+        `${error.message}. \nTotal Fetched: ${error.totalFetched}, \nAlready Exists: ${error.alreadyExists}, \nNewly Imported: ${error.newlyImported}`
+      );
+    }
+    setLoading(false);
+  };
   return (
     <div>
       <div className="container mb-4">
-        <Typography variant="h4" fontWeight={700}>
-          REGISTERED CENTRES
-        </Typography>
+        <div className="">
+          <Typography variant="h4" fontWeight={700}>
+            REGISTERED CENTRES
+          </Typography>
+        </div>
+        <div>
+          <Button onClick={importCentres} loading={loading}>
+            Pull new centres
+          </Button>
+        </div>
       </div>
       <div style={{ height: "60vh" }} className="p-3">
-        <DataGrid columns={columns} rows={rows} />
+        <DataGrid
+          loading={loading}
+          columns={columns}
+          rows={rows}
+          paginationModel={paginationModel}
+          onPaginationModelChange={setPaginationModel}
+          pageSizeOptions={[50, 100]}
+          pagination
+          rowSelection={false}
+          paginationMode="server"
+          rowCount={rowCount}
+        />
       </div>
     </div>
   );
