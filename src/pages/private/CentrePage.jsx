@@ -15,6 +15,7 @@ function CentrePage() {
   const [loading, setLoading] = useState(false);
   const [rowCount, setRowCount] = useState(0);
   const getData = async () => {
+    setLoading(true);
     const { data, error } = await httpService("centre/viewallcentres", {
       params: {
         page: paginationModel.page + 1,
@@ -25,12 +26,12 @@ function CentrePage() {
     if (data) {
       setRowCount(data.total);
       setRows(data.results);
-      console.log(data);
     }
 
     if (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
