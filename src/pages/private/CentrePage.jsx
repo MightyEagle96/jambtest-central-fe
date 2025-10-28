@@ -93,7 +93,7 @@ function CentrePage() {
           </Button>
         </div>
       </div>
-      <div style={{ height: "60vh" }} className="p-3">
+      <div className="p-3">
         <DataGrid
           loading={loading}
           columns={columns}
