@@ -62,7 +62,7 @@ function HomeDashboard() {
             </div>
             <div className="text-end">
               <Typography variant="h5">
-                {dashboardData.centres}/{dashboardData.totalCapacity}
+                {dashboardData.computers}/{dashboardData.totalCapacity}
               </Typography>
             </div>
           </div>

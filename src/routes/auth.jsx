@@ -12,7 +12,7 @@ export async function getMyProfile() {
 
     if (response.status === 401) {
       // try refreshing the token
-      const refreshResponse = await fetch(`${baseURL}/auth/refreshtoken`, {
+      const refreshResponse = await fetch(`${baseURL}/auth/refresh`, {
         credentials: "include", // include refresh token cookie
         headers: {
           "Content-Type": "application/json",
