@@ -34,6 +34,7 @@ function JambTestHomePage() {
     const { data, error } = await httpService.post("auth/login", loginData);
 
     if (data) {
+      window.location.reload();
       console.log(data);
     }
 

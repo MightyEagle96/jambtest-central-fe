@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppUser } from "../contexts/AppUserContext";
-import { HolidayVillage, Home, ShowChart } from "@mui/icons-material";
+import { HolidayVillage, Home, Logout, ShowChart } from "@mui/icons-material";
 import { Link, Outlet } from "react-router";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
@@ -8,8 +8,23 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { CircularProgress } from "@mui/material";
+import { httpService } from "../httpService";
+import { toast } from "react-toastify";
 
 function AdminLayout() {
+  const [loading, setLoading] = useState(false);
+  const logout = async () => {
+    setLoading(true);
+    const { data, error } = await httpService.get("auth/logout");
+    if (data) {
+      window.location.reload();
+    }
+    if (error) {
+      toast.error(error);
+    }
+    setLoading(false);
+  };
   const { user } = useAppUser();
 
   const navLinks = [
@@ -20,7 +35,7 @@ function AdminLayout() {
   return (
     <div className="row m-0" style={{ minHeight: "90vh" }}>
       <div
-        className="col-lg-2 bg-light "
+        className="col-lg-2 bg-light d-flex flex-column "
         style={{
           height: "100vh",
           position: "sticky",
@@ -28,7 +43,7 @@ function AdminLayout() {
           overflowY: "auto",
         }}
       >
-        <div className="pt-5">
+        <div className="pt-5 mb-auto">
           <div className="mb-5">
             <div className="d-flex justify-content-center mb-3">
               <Avatar
@@ -48,15 +63,22 @@ function AdminLayout() {
                   <ListItemText primary={c.name} sx={{ color: "GrayText" }} />
                 </ListItemButton>
               ))}
-
-              {/* <ListItemButton onClick={logout}>
-                <ListItemIcon>
-                  <LogoutOutlined />
-                </ListItemIcon>
-                <ListItemText primary="Logout" sx={{ color: "GrayText" }} />
-              </ListItemButton> */}
             </List>
           </div>
+        </div>
+        <div className="mb-5">
+          <List>
+            <ListItemButton onClick={logout}>
+              <ListItemIcon>
+                {loading ? (
+                  <CircularProgress size={20} color="dark" />
+                ) : (
+                  <Logout />
+                )}
+              </ListItemIcon>
+              <ListItemText primary={"Logout"} sx={{ color: "GrayText" }} />
+            </ListItemButton>
+          </List>
         </div>
       </div>
       <div
