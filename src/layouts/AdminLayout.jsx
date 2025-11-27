@@ -66,7 +66,7 @@ function AdminLayout() {
             </List>
           </div>
         </div>
-        <div className="mb-5">
+        <div className="" style={{ minHeight: "40vh" }}>
           <List>
             <ListItemButton onClick={logout}>
               <ListItemIcon>
