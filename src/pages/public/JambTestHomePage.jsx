@@ -19,9 +19,11 @@ import { appLogo } from "../../assets/appTheme";
 import { useState } from "react";
 import { httpService } from "../../httpService";
 import { toast } from "react-toastify";
+import { Link } from "react-router";
+import { Nav } from "react-bootstrap";
 
 function JambTestHomePage() {
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [loginData, setLoginData] = useState({});
   const [inputType, setInputType] = useState("password");
   const [loading, setLoading] = useState(false);
 
@@ -77,6 +79,9 @@ function JambTestHomePage() {
                   <TextField
                     fullWidth
                     label="email"
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, email: e.target.value })
+                    }
                     slotProps={{
                       input: {
                         startAdornment: <MailOutline sx={{ mr: 1, ml: 1 }} />,
@@ -89,6 +94,9 @@ function JambTestHomePage() {
                     fullWidth
                     label="Password"
                     type={inputType}
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, password: e.target.value })
+                    }
                     slotProps={{
                       input: {
                         startAdornment: (
@@ -122,6 +130,9 @@ function JambTestHomePage() {
                     Login
                   </Button>
                 </div>
+                <Nav.Link as={Link} to="/register">
+                  Create new account
+                </Nav.Link>
               </form>
             </div>
           </div>

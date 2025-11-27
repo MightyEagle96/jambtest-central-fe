@@ -8,13 +8,15 @@ import "@fontsource/roboto/700.css";
 
 import { ToastContainer } from "react-toastify";
 import MainRoutes from "./routes/MainRoutes";
+import { AppUserProvider } from "./contexts/AppUserContext";
 
 function App() {
   return (
     <div>
-      <MainRoutes />
-      {/* <CentrePage /> */}
-      <ToastContainer autoClose={3000} />
+      <AppUserProvider>
+        <MainRoutes />
+        <ToastContainer />
+      </AppUserProvider>
     </div>
   );
 }

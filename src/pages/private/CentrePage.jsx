@@ -40,12 +40,40 @@ function CentrePage() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
-    { field: "ReferenceNumber", headerName: "Reference Number", width: 200 },
+    {
+      field: "ReferenceNumber",
+      headerName: "Reference Number",
+      width: 200,
+      renderCell: (params) => (
+        <span className="text-uppercase">{params.value}</span>
+      ),
+    },
 
-    { field: "CentreName", headerName: "Centre Name", width: 300 },
-    { field: "State", headerName: "State", width: 200 },
+    {
+      field: "CentreName",
+      headerName: "Centre Name",
+      width: 300,
+      renderCell: (params) => (
+        <span className="text-capitalize">{params.value}</span>
+      ),
+    },
+    {
+      field: "State",
+      headerName: "State",
+      width: 200,
+      renderCell: (params) => (
+        <span className="text-uppercase">{params.value}</span>
+      ),
+    },
     { field: "CentreCapacity", headerName: "Centre Capacity", width: 200 },
-    { field: "AdminName", headerName: "Admin Name", width: 250 },
+    {
+      field: "AdminName",
+      headerName: "Admin Name",
+      width: 250,
+      renderCell: (params) => (
+        <span className="text-capitalize">{params.value}</span>
+      ),
+    },
     { field: "AdminPhone", headerName: "Admin Phone", width: 200 },
     {
       field: "createdAt",
@@ -81,16 +109,21 @@ function CentrePage() {
   };
   return (
     <div>
-      <div className="container mb-4">
-        <div className="">
-          <Typography variant="h4" fontWeight={700}>
-            REGISTERED CENTRES
-          </Typography>
+      <div className="mb-4">
+        <div className="row mb-3">
+          <div className="col-lg-2">
+            <Typography fontWeight={700}>CENTRES</Typography>
+          </div>
+          <div className="col-lg-3">
+            <Button onClick={importCentres} loading={loading}>
+              import new centres
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button onClick={importCentres} loading={loading}>
-            import new centres
-          </Button>
+        <div className="row mb-2">
+          <div className="col-lg-3">
+            <Typography fontWeight={300}>Total: {rowCount}</Typography>
+          </div>
         </div>
       </div>
       <div className="p-3">

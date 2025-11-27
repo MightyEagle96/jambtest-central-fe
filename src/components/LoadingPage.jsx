@@ -3,7 +3,7 @@ import { Typography, Box, CircularProgress } from "@mui/material";
 import { appColors, appLogo } from "../assets/appTheme";
 import { useAppUser } from "../contexts/AppUserContext";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 //import { appColors } from "../assets/appTheme";
 
 function LoadingPage() {
@@ -37,7 +37,7 @@ function LoadingPage() {
 
         <div className="mt-2">
           <Typography variant="h6" color={appColors.primary2}>
-            FCSC
+            JAMB TEST
           </Typography>
 
           {/* Circular Progress with gradient */}
