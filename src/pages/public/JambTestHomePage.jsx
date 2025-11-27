@@ -1,15 +1,47 @@
-import React from "react";
-import { Avatar, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import {
   Wifi,
   SettingsEthernet,
   DesktopMacRounded,
   LaptopOutlined,
   Login,
+  MailOutline,
+  Visibility,
+  VisibilityOff,
 } from "@mui/icons-material";
 import { appLogo } from "../../assets/appTheme";
+import { useState } from "react";
+import { httpService } from "../../httpService";
+import { toast } from "react-toastify";
 
 function JambTestHomePage() {
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [inputType, setInputType] = useState("password");
+  const [loading, setLoading] = useState(false);
+
+  const login = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { data, error } = await httpService.post("auth/login", loginData);
+
+    if (data) {
+      console.log(data);
+    }
+
+    if (error) {
+      toast.error(error);
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div
       style={{ height: "100vh", backgroundColor: "#F9F8F6" }}
@@ -40,15 +72,53 @@ function JambTestHomePage() {
             </div>
 
             <div className="col-lg-4">
-              <form>
+              <form onSubmit={login}>
                 <div className="mb-3">
-                  <TextField fullWidth label="Username" />
+                  <TextField
+                    fullWidth
+                    label="email"
+                    slotProps={{
+                      input: {
+                        startAdornment: <MailOutline sx={{ mr: 1, ml: 1 }} />,
+                      },
+                    }}
+                  />
                 </div>
                 <div className="mb-3">
-                  <TextField fullWidth label="Password" />
+                  <TextField
+                    fullWidth
+                    label="Password"
+                    type={inputType}
+                    slotProps={{
+                      input: {
+                        startAdornment: (
+                          <IconButton
+                            onClick={() =>
+                              setInputType(
+                                inputType === "password" ? "text" : "password"
+                              )
+                            }
+                          >
+                            {inputType === "password" ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        ),
+                      },
+                    }}
+                  />
                 </div>
                 <div className="mb-3">
-                  <Button endIcon={<Login />} fullWidth>
+                  <Button
+                    color="success"
+                    variant="contained"
+                    type="submit"
+                    endIcon={<Login />}
+                    fullWidth
+                    loading={loading}
+                  >
                     Login
                   </Button>
                 </div>
