@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useAppUser } from "../contexts/AppUserContext";
-import { HolidayVillage, Home, Logout, ShowChart } from "@mui/icons-material";
+import {
+  DomainDisabled,
+  HolidayVillage,
+  Home,
+  Logout,
+  ShowChart,
+  WarningAmber,
+} from "@mui/icons-material";
 import { Link, Outlet } from "react-router";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
@@ -31,6 +38,12 @@ function AdminLayout() {
     { name: "Home", path: "/", icon: <Home /> },
     { name: "Centres", path: "/centres", icon: <HolidayVillage /> },
     { name: "Network Tests", path: "/networktests", icon: <ShowChart /> },
+    { name: "Infractions", path: "/infractions", icon: <WarningAmber /> },
+    {
+      name: "Delisted Centres",
+      path: "/infractions",
+      icon: <DomainDisabled />,
+    },
   ];
   return (
     <div className="row m-0" style={{ minHeight: "90vh" }}>
