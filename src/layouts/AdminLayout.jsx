@@ -48,7 +48,7 @@ function AdminLayout() {
   return (
     <div className="row m-0" style={{ minHeight: "90vh" }}>
       <div
-        className="col-lg-2 bg-light d-flex flex-column "
+        className="col-lg-2 bg-light   "
         style={{
           height: "100vh",
           position: "sticky",
@@ -56,7 +56,7 @@ function AdminLayout() {
           overflowY: "auto",
         }}
       >
-        <div className="pt-5 mb-auto">
+        <div className="pt-5 ">
           <div className="mb-5">
             <div className="d-flex justify-content-center mb-3">
               <Avatar
@@ -79,7 +79,7 @@ function AdminLayout() {
             </List>
           </div>
         </div>
-        <div className="" style={{ minHeight: "40vh" }}>
+        <div className="">
           <List>
             <ListItemButton onClick={logout}>
               <ListItemIcon>
