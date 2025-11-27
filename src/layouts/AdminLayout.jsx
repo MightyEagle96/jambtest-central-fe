@@ -18,7 +18,7 @@ function AdminLayout() {
     setLoading(true);
     const { data, error } = await httpService.get("auth/logout");
     if (data) {
-      window.location.reload();
+      window.location.assign("/");
     }
     if (error) {
       toast.error(error);
