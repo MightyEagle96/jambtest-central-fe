@@ -61,19 +61,14 @@ function HomeDashboard() {
               </div>
             </Stack>
 
-            <Button
-              sx={{ textTransform: "capitalize" }}
-              endIcon={<KeyboardArrowRight />}
-            >
-              View centres
-            </Button>
-            {/* <div>
-              <HolidayVillage sx={{ mr: 1 }} />
-              <Typography variant="caption">CBT Centres</Typography>
-            </div>
             <div className="text-end">
-             
-            </div> */}
+              <Button
+                sx={{ textTransform: "capitalize" }}
+                endIcon={<KeyboardArrowRight />}
+              >
+                View centres
+              </Button>
+            </div>
           </div>
           <div className="col-lg-3  rounded border p-3   m-1">
             <Stack direction={"row"} spacing={4}>
@@ -95,12 +90,14 @@ function HomeDashboard() {
               </div>
             </Stack>
 
-            <Button
-              sx={{ textTransform: "capitalize" }}
-              endIcon={<KeyboardArrowRight />}
-            >
-              View Computers
-            </Button>
+            <div className="text-end">
+              <Button
+                sx={{ textTransform: "capitalize" }}
+                endIcon={<KeyboardArrowRight />}
+              >
+                View Computers
+              </Button>
+            </div>
           </div>
 
           <div className="col-lg-3  rounded border p-3   m-1">
@@ -123,12 +120,14 @@ function HomeDashboard() {
               </div>
             </Stack>
 
-            <Button
-              sx={{ textTransform: "capitalize" }}
-              endIcon={<KeyboardArrowRight />}
-            >
-              View Infractions
-            </Button>
+            <div className="text-end">
+              <Button
+                sx={{ textTransform: "capitalize" }}
+                endIcon={<KeyboardArrowRight />}
+              >
+                View Infractions
+              </Button>
+            </div>
           </div>
           <div className="col-lg-3  rounded border p-3   m-1">
             <Stack direction={"row"} spacing={4}>
@@ -150,12 +149,14 @@ function HomeDashboard() {
               </div>
             </Stack>
 
-            <Button
-              sx={{ textTransform: "capitalize" }}
-              endIcon={<KeyboardArrowRight />}
-            >
-              View network tests
-            </Button>
+            <div className="text-end">
+              <Button
+                sx={{ textTransform: "capitalize" }}
+                endIcon={<KeyboardArrowRight />}
+              >
+                View network tests
+              </Button>
+            </div>
           </div>
         </div>
       )}
