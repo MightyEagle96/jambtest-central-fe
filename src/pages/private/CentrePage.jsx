@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 import { httpService } from "../../httpService";
 import { useState } from "react";
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { toast } from "react-toastify";
 import { ApplicationNavigation } from "../../routes/MainRoutes";
-import { HolidayVillage, Sync } from "@mui/icons-material";
+import { HolidayVillage, Search, Sync } from "@mui/icons-material";
 
 function CentrePage() {
   const [paginationModel, setPaginationModel] = useState({
@@ -16,12 +16,15 @@ function CentrePage() {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [rowCount, setRowCount] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+  const [searching, setSearching] = useState(false);
   const getData = async () => {
     setLoading(true);
     const { data, error } = await httpService("centre/viewallcentres", {
       params: {
         page: paginationModel.page + 1,
         limit: paginationModel.pageSize,
+        searchValue,
       },
     });
 
@@ -113,8 +116,8 @@ function CentrePage() {
     <div>
       <ApplicationNavigation links={[]} pageTitle={"Centres"} />
 
-      <div className="row">
-        <div className="col-lg-2 p-3 bg-light m-1">
+      <div className="row mb-4">
+        <div className="col-lg-3 p-3 bg-light m-1">
           <Stack
             direction={"row"}
             spacing={3}
@@ -129,7 +132,7 @@ function CentrePage() {
             </div>
           </Stack>
         </div>
-        <div className="col-lg-2 p-3 bg-light m-1">
+        <div className="col-lg-3 p-3 bg-light m-1">
           <Stack
             direction={"row"}
             spacing={3}
@@ -144,7 +147,7 @@ function CentrePage() {
             </div>
           </Stack>
         </div>
-        <div className="col-lg-2 p-3 bg-light m-1 d-flex align-items-center">
+        <div className="col-lg-3 p-3 bg-light m-1 d-flex align-items-center">
           <Button
             onClick={importCentres}
             loading={loading}
@@ -157,20 +160,34 @@ function CentrePage() {
         </div>
       </div>
 
-      <div className="p-3">
-        <DataGrid
-          loading={loading}
-          columns={columns}
-          rows={rows}
-          paginationModel={paginationModel}
-          onPaginationModelChange={setPaginationModel}
-          pageSizeOptions={[50, 100]}
-          pagination
-          rowSelection={false}
-          paginationMode="server"
-          rowCount={rowCount}
+      <div className="col-lg-4 mb-5">
+        <TextField
+          fullWidth
+          label="Search Centres"
+          onChange={(e) => setSearchValue(e.target.value)}
         />
+        <Button
+          sx={{ textTransform: "unset" }}
+          endIcon={<Search />}
+          onClick={getData}
+          loading={searching}
+        >
+          Search
+        </Button>
       </div>
+
+      <DataGrid
+        loading={loading}
+        columns={columns}
+        rows={rows}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
+        pageSizeOptions={[50, 100]}
+        pagination
+        rowSelection={false}
+        paginationMode="server"
+        rowCount={rowCount}
+      />
     </div>
   );
 }

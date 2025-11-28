@@ -35,7 +35,6 @@ function JambTestHomePage() {
 
     if (data) {
       window.location.reload();
-      console.log(data);
     }
 
     if (error) {
