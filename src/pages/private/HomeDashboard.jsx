@@ -5,7 +5,6 @@ import {
   CloudDoneOutlined,
   DesktopMacOutlined,
   ErrorOutline,
-  FileUpload,
   HolidayVillage,
   KeyboardArrowRight,
 } from "@mui/icons-material";
@@ -19,11 +18,10 @@ function HomeDashboard() {
 
   const getData = async () => {
     setLoading(true);
-    const { data, error } = await httpService.get("/dashboard");
+    const { data } = await httpService.get("/dashboard");
 
     if (data) {
       setDashboardData(data);
-      console.log(data);
     }
     setLoading(false);
   };

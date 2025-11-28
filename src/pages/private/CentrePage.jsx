@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { httpService } from "../../httpService";
 import { useState } from "react";
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { toast } from "react-toastify";
+import { ApplicationNavigation } from "../../routes/MainRoutes";
+import { HolidayVillage, Sync } from "@mui/icons-material";
 
 function CentrePage() {
   const [paginationModel, setPaginationModel] = useState({
@@ -109,23 +111,52 @@ function CentrePage() {
   };
   return (
     <div>
-      <div className="mb-4">
-        <div className="row mb-3">
-          <div className="col-lg-2">
-            <Typography fontWeight={700}>CENTRES</Typography>
-          </div>
-          <div className="col-lg-3">
-            <Button onClick={importCentres} loading={loading}>
-              import new centres
-            </Button>
-          </div>
+      <ApplicationNavigation links={[]} pageTitle={"Centres"} />
+
+      <div className="row">
+        <div className="col-lg-2 p-3 bg-light m-1">
+          <Stack
+            direction={"row"}
+            spacing={3}
+            className="text-muted d-flex align-items-center"
+          >
+            <div>
+              <HolidayVillage />
+            </div>
+            <div>
+              <Typography variant="caption">Centres</Typography>
+              <Typography fontWeight={700}>{rowCount}</Typography>
+            </div>
+          </Stack>
         </div>
-        <div className="row mb-2">
-          <div className="col-lg-3">
-            <Typography fontWeight={300}>Total: {rowCount}</Typography>
-          </div>
+        <div className="col-lg-2 p-3 bg-light m-1">
+          <Stack
+            direction={"row"}
+            spacing={3}
+            className="text-muted d-flex align-items-center"
+          >
+            <div>
+              <HolidayVillage />
+            </div>
+            <div>
+              <Typography variant="caption">Blacklisted Centres</Typography>
+              <Typography fontWeight={700}>{rowCount}</Typography>
+            </div>
+          </Stack>
+        </div>
+        <div className="col-lg-2 p-3 bg-light m-1 d-flex align-items-center">
+          <Button
+            onClick={importCentres}
+            loading={loading}
+            variant="contained"
+            endIcon={<Sync />}
+            loadingPosition="end"
+          >
+            import new centres
+          </Button>
         </div>
       </div>
+
       <div className="p-3">
         <DataGrid
           loading={loading}
