@@ -14,6 +14,7 @@ import { NavigateNext } from "@mui/icons-material";
 import RegisteredComputers from "../pages/private/RegisteredComputers";
 import Infractions from "../pages/private/Infractions";
 import ViewCentre from "../pages/private/ViewCentre";
+import CentreComputers from "../pages/private/CentreComputers";
 
 function MainRoutes() {
   const publicRoutes = [
@@ -27,6 +28,7 @@ function MainRoutes() {
     { path: "/", element: <HomeDashboard /> },
     { path: "/centres", element: <CentrePage /> },
     { path: "/centres/:id", element: <ViewCentre /> },
+    { path: "/centrecomputers", element: <CentreComputers /> },
     { path: "/networktests", element: <ViewNetworkTests /> },
     { path: "/computers", element: <RegisteredComputers /> },
     { path: "/infractions", element: <Infractions /> },
