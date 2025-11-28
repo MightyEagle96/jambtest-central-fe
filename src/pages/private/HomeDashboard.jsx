@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAppUser } from "../../contexts/AppUserContext";
-import { CircularProgress, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import {
+  CloudDoneOutlined,
   DesktopMacOutlined,
+  ErrorOutline,
   FileUpload,
   HolidayVillage,
+  KeyboardArrowRight,
 } from "@mui/icons-material";
 import { httpService } from "../../httpService";
 
@@ -29,8 +32,8 @@ function HomeDashboard() {
   }, []);
   return (
     <div>
-      <div className="mb-4">
-        <Typography>
+      <div className="mb-4 bg-dark text-white p-4 bg-dark">
+        <Typography variant="">
           Welcome back{" "}
           <strong>
             {user.fullName}{" "}
@@ -40,57 +43,119 @@ function HomeDashboard() {
       </div>
       {dashboardData && (
         <div className="row">
-          <div
-            className="col-lg-3 p-3 rounded text-white m-1"
-            style={{ backgroundColor: "#6892D5" }}
-          >
-            <div>
+          <div className="col-lg-3  rounded border p-3   m-1">
+            <Stack direction={"row"} spacing={4}>
+              <div>
+                <HolidayVillage
+                  sx={{
+                    mr: 1,
+                    height: "50px",
+                    width: "50px",
+                    color: "#6892D5",
+                  }}
+                />
+              </div>
+              <div className="text-muted">
+                <Typography variant="caption">CBT Centres</Typography>
+                <Typography variant="h5">{dashboardData.centres}</Typography>
+              </div>
+            </Stack>
+
+            <Button
+              sx={{ textTransform: "capitalize" }}
+              endIcon={<KeyboardArrowRight />}
+            >
+              View centres
+            </Button>
+            {/* <div>
               <HolidayVillage sx={{ mr: 1 }} />
               <Typography variant="caption">CBT Centres</Typography>
             </div>
             <div className="text-end">
-              <Typography variant="h5">{dashboardData.centres}</Typography>
-            </div>
+             
+            </div> */}
           </div>
-          <div
-            className="col-lg-3 p-3 rounded text-white m-1"
-            style={{ backgroundColor: "#79D1C3" }}
-          >
-            <div>
-              <DesktopMacOutlined sx={{ mr: 1 }} />
-              <Typography variant="caption">Registered Computers</Typography>
-            </div>
-            <div className="text-end">
-              <Typography variant="h5">
-                {dashboardData.computers}/{dashboardData.totalCapacity}
-              </Typography>
-            </div>
+          <div className="col-lg-3  rounded border p-3   m-1">
+            <Stack direction={"row"} spacing={4}>
+              <div>
+                <DesktopMacOutlined
+                  sx={{
+                    mr: 1,
+                    height: "50px",
+                    width: "50px",
+                    color: "#79D1C3",
+                  }}
+                />
+              </div>
+              <div className="text-muted">
+                <Typography variant="caption">Registered Computers</Typography>
+                <Typography variant="h5">
+                  {dashboardData.computers}/{dashboardData.totalCapacity}
+                </Typography>
+              </div>
+            </Stack>
+
+            <Button
+              sx={{ textTransform: "capitalize" }}
+              endIcon={<KeyboardArrowRight />}
+            >
+              View Computers
+            </Button>
           </div>
-          <div
-            className="col-lg-3 p-3 rounded text-muted m-1"
-            style={{ backgroundColor: "#C9FDD7" }}
-          >
-            <div>
-              <HolidayVillage sx={{ mr: 1 }} />
-              <Typography variant="caption">Infractions</Typography>
-            </div>
-            <div className="text-end">
-              <Typography variant="h5">
-                {dashboardData.flaggedComputers}
-              </Typography>
-            </div>
+
+          <div className="col-lg-3  rounded border p-3   m-1">
+            <Stack direction={"row"} spacing={4}>
+              <div>
+                <ErrorOutline
+                  sx={{
+                    mr: 1,
+                    height: "50px",
+                    width: "50px",
+                    color: "#FF3796",
+                  }}
+                />
+              </div>
+              <div className="text-muted">
+                <Typography variant="caption">Infractions</Typography>
+                <Typography variant="h5">
+                  {dashboardData.flaggedComputers}
+                </Typography>
+              </div>
+            </Stack>
+
+            <Button
+              sx={{ textTransform: "capitalize" }}
+              endIcon={<KeyboardArrowRight />}
+            >
+              View Infractions
+            </Button>
           </div>
-          <div
-            className="col-lg-3 p-3 rounded  m-1"
-            style={{ backgroundColor: "#F8FCFB", color: "#00649F" }}
-          >
-            <div>
-              <FileUpload sx={{ mr: 1 }} />
-              <Typography variant="caption">Network Tests</Typography>
-            </div>
-            <div className="text-end">
-              <Typography variant="h5">{dashboardData.networkTests}</Typography>
-            </div>
+          <div className="col-lg-3  rounded border p-3   m-1">
+            <Stack direction={"row"} spacing={4}>
+              <div>
+                <CloudDoneOutlined
+                  sx={{
+                    mr: 1,
+                    height: "50px",
+                    width: "50px",
+                    color: "#2EA1D9",
+                  }}
+                />
+              </div>
+              <div className="text-muted">
+                <Typography variant="caption">Network Tests</Typography>
+                <Typography variant="h5">
+                  {dashboardData.networkTests}
+                </Typography>
+              </div>
+            </Stack>
+
+            <Button
+              sx={{ textTransform: "capitalize" }}
+              endIcon={<KeyboardArrowRight />}
+            >
+              View network tests
+            </Button>
           </div>
         </div>
       )}
