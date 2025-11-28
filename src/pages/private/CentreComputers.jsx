@@ -108,7 +108,7 @@ function CentreComputers() {
           <CircularProgress size={20} />
         </div>
       )}
-      <div style={{ height: 400, width: "100%" }}>
+      <div>
         <DataGrid
           loading={loading}
           rows={rows}
