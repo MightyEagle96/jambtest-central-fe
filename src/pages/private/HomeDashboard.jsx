@@ -10,6 +10,7 @@ import {
   KeyboardArrowRight,
 } from "@mui/icons-material";
 import { httpService } from "../../httpService";
+import { Link } from "react-router";
 
 function HomeDashboard() {
   const { user } = useAppUser();
@@ -32,7 +33,7 @@ function HomeDashboard() {
   }, []);
   return (
     <div>
-      <div className="mb-4 bg-dark text-white p-4 bg-dark">
+      <div className="mb-4  text-muted ">
         <Typography variant="">
           Welcome back{" "}
           <strong>
@@ -43,7 +44,7 @@ function HomeDashboard() {
       </div>
       {dashboardData && (
         <div className="row">
-          <div className="col-lg-3  rounded border p-3   m-1">
+          <div className="col-lg-3  rounded shadow-sm bg-light p-3   m-1">
             <Stack direction={"row"} spacing={2}>
               <div>
                 <HolidayVillage
@@ -51,7 +52,7 @@ function HomeDashboard() {
                     mr: 1,
                     height: "50px",
                     width: "50px",
-                    color: "#6892D5",
+                    color: "#FCCB8F",
                   }}
                 />
               </div>
@@ -65,12 +66,14 @@ function HomeDashboard() {
               <Button
                 sx={{ textTransform: "capitalize" }}
                 endIcon={<KeyboardArrowRight />}
+                as={Link}
+                to="/centres"
               >
                 View centres
               </Button>
             </div>
           </div>
-          <div className="col-lg-4  rounded border p-3   m-1">
+          <div className="col-lg-4  rounded  shadow-sm bg-light p-3   m-1">
             <Stack direction={"row"} spacing={2}>
               <div>
                 <DesktopMacOutlined
@@ -94,13 +97,15 @@ function HomeDashboard() {
               <Button
                 sx={{ textTransform: "capitalize" }}
                 endIcon={<KeyboardArrowRight />}
+                as={Link}
+                to="/computers"
               >
                 View Computers
               </Button>
             </div>
           </div>
 
-          <div className="col-lg-3  rounded border p-3   m-1">
+          <div className="col-lg-3  rounded  shadow-sm bg-light p-3   m-1">
             <Stack direction={"row"} spacing={2}>
               <div>
                 <ErrorOutline
@@ -124,12 +129,14 @@ function HomeDashboard() {
               <Button
                 sx={{ textTransform: "capitalize" }}
                 endIcon={<KeyboardArrowRight />}
+                as={Link}
+                to="/infractions"
               >
                 View Infractions
               </Button>
             </div>
           </div>
-          <div className="col-lg-3  rounded border p-3   m-1">
+          <div className="col-lg-3  rounded  shadow-sm bg-light p-3   m-1">
             <Stack direction={"row"} spacing={2}>
               <div>
                 <CloudDoneOutlined
@@ -153,6 +160,8 @@ function HomeDashboard() {
               <Button
                 sx={{ textTransform: "capitalize" }}
                 endIcon={<KeyboardArrowRight />}
+                as={Link}
+                to="/networktests"
               >
                 View network tests
               </Button>
