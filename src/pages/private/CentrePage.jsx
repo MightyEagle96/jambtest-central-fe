@@ -19,7 +19,7 @@ function CentrePage() {
   const [searchValue, setSearchValue] = useState("");
 
   const getData = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setLoading(true);
     const { data, error } = await httpService("centre/viewallcentres", {
       params: {
