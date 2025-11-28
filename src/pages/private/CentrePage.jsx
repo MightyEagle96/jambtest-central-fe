@@ -17,8 +17,9 @@ function CentrePage() {
   const [loading, setLoading] = useState(false);
   const [rowCount, setRowCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  const [searching, setSearching] = useState(false);
-  const getData = async () => {
+
+  const getData = async (e) => {
+    e.preventDefault();
     setLoading(true);
     const { data, error } = await httpService("centre/viewallcentres", {
       params: {
@@ -161,19 +162,22 @@ function CentrePage() {
       </div>
 
       <div className="col-lg-4 mb-5">
-        <TextField
-          fullWidth
-          label="Search Centres"
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <Button
-          sx={{ textTransform: "unset" }}
-          endIcon={<Search />}
-          onClick={getData}
-          loading={searching}
-        >
-          Search
-        </Button>
+        <form onSubmit={getData}>
+          <TextField
+            fullWidth
+            label="Search Centres"
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button
+            sx={{ textTransform: "unset" }}
+            endIcon={<Search />}
+            type="submit"
+            loading={loading}
+            loadingPosition="end"
+          >
+            Search
+          </Button>
+        </form>
       </div>
 
       <DataGrid
