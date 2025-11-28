@@ -44,7 +44,7 @@ function HomeDashboard() {
       {dashboardData && (
         <div className="row">
           <div className="col-lg-3  rounded border p-3   m-1">
-            <Stack direction={"row"} spacing={4}>
+            <Stack direction={"row"} spacing={2}>
               <div>
                 <HolidayVillage
                   sx={{
@@ -70,8 +70,8 @@ function HomeDashboard() {
               </Button>
             </div>
           </div>
-          <div className="col-lg-3  rounded border p-3   m-1">
-            <Stack direction={"row"} spacing={4}>
+          <div className="col-lg-4  rounded border p-3   m-1">
+            <Stack direction={"row"} spacing={2}>
               <div>
                 <DesktopMacOutlined
                   sx={{
@@ -101,7 +101,7 @@ function HomeDashboard() {
           </div>
 
           <div className="col-lg-3  rounded border p-3   m-1">
-            <Stack direction={"row"} spacing={4}>
+            <Stack direction={"row"} spacing={2}>
               <div>
                 <ErrorOutline
                   sx={{
@@ -130,7 +130,7 @@ function HomeDashboard() {
             </div>
           </div>
           <div className="col-lg-3  rounded border p-3   m-1">
-            <Stack direction={"row"} spacing={4}>
+            <Stack direction={"row"} spacing={2}>
               <div>
                 <CloudDoneOutlined
                   sx={{
