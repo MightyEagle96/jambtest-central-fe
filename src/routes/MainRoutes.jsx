@@ -13,6 +13,7 @@ import { Breadcrumbs, Stack, Typography } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 import RegisteredComputers from "../pages/private/RegisteredComputers";
 import Infractions from "../pages/private/Infractions";
+import ViewCentre from "../pages/private/ViewCentre";
 
 function MainRoutes() {
   const publicRoutes = [
@@ -25,6 +26,7 @@ function MainRoutes() {
   const privateRoutes = [
     { path: "/", element: <HomeDashboard /> },
     { path: "/centres", element: <CentrePage /> },
+    { path: "/centres/:id", element: <ViewCentre /> },
     { path: "/networktests", element: <ViewNetworkTests /> },
     { path: "/computers", element: <RegisteredComputers /> },
     { path: "/infractions", element: <Infractions /> },
@@ -76,7 +78,7 @@ export function ApplicationNavigation({ links, pageTitle }) {
         </Link>
         {links.map((link) => (
           <Link
-            underline="hover"
+            style={{ color: "GrayText", textDecoration: "none" }}
             component={Router}
             to={link.path}
             color="inherit"
@@ -84,7 +86,9 @@ export function ApplicationNavigation({ links, pageTitle }) {
             {link.name}
           </Link>
         ))}
-        <Typography color="text.secondary">{pageTitle}</Typography>
+        <Typography color="text.secondary" className="text-wrap">
+          {pageTitle}
+        </Typography>
       </Breadcrumbs>
     </Stack>
   );

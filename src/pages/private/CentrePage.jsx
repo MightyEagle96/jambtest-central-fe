@@ -7,6 +7,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { toast } from "react-toastify";
 import { ApplicationNavigation } from "../../routes/MainRoutes";
 import { HolidayVillage, Search, Sync } from "@mui/icons-material";
+import { useNavigate } from "react-router";
 
 function CentrePage() {
   const [paginationModel, setPaginationModel] = useState({
@@ -17,6 +18,8 @@ function CentrePage() {
   const [loading, setLoading] = useState(false);
   const [rowCount, setRowCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+
+  const navigate = useNavigate();
 
   const getData = async (e) => {
     if (e) e.preventDefault();
@@ -113,6 +116,10 @@ function CentrePage() {
     }
     setLoading(false);
   };
+
+  const clickRow = (params) => {
+    navigate(`/centres/${params.row._id}`);
+  };
   return (
     <div>
       <ApplicationNavigation links={[]} pageTitle={"Centres"} />
@@ -191,6 +198,7 @@ function CentrePage() {
         rowSelection={false}
         paginationMode="server"
         rowCount={rowCount}
+        onRowClick={clickRow}
       />
     </div>
   );
