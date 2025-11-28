@@ -38,7 +38,7 @@ function CentreComputers() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [paginationModel]);
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
@@ -113,9 +113,10 @@ function CentreComputers() {
           loading={loading}
           rows={rows}
           columns={columns}
-          pageSize={paginationModel.pageSize}
-          rowsPerPageOptions={[50]}
+          pageSizeOptions={[50, 100]}
           rowCount={rowCount}
+          pagination
+          paginationMode="server"
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}
         />
