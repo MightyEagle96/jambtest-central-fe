@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { ApplicationNavigation } from "../../routes/MainRoutes";
 import { useSearchParams } from "react-router";
 import { httpService } from "../../httpService";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 function CentreComputers() {
   const [searchParams] = useSearchParams();
 
   const centre = searchParams.get("centre");
+
+  const centreName = searchParams.get("centrename");
 
   const [paginationModel, setPaginationModel] = useState({
     page: 0, // DataGrid uses 0-based index
@@ -47,7 +49,7 @@ function CentreComputers() {
       headerName: "Manufacturer",
       width: 200,
       renderCell: (params) => (
-        <span className="text-capitalize">{params.value}</span>
+        <span className="text-uppercase">{params.value}</span>
       ),
     },
     {
@@ -68,7 +70,7 @@ function CentreComputers() {
     },
     {
       field: "macAddresses",
-      headerName: "Mac Addresses",
+      headerName: "Mac Address",
       width: 200,
       renderCell: (params) => (
         <span className="text-capitalize">{params.value.join(", ")}</span>
@@ -77,6 +79,14 @@ function CentreComputers() {
     {
       field: "serialNumber",
       headerName: "Serial Number",
+      width: 200,
+      renderCell: (params) => (
+        <span className="text-uppercase">{params.value}</span>
+      ),
+    },
+    {
+      field: "processorId",
+      headerName: "Processor ID",
       width: 200,
       renderCell: (params) => (
         <span className="text-uppercase">{params.value}</span>
@@ -109,6 +119,20 @@ function CentreComputers() {
         </div>
       )}
       <div>
+        <div className="alert alert-primary border-0">
+          <div>
+            <Typography variant="caption">Centre:</Typography>
+            <Typography variant="h6" textTransform={"uppercase"}>
+              {centreName}
+            </Typography>
+            <hr />
+          </div>
+          <div>
+            <Typography variant="overline">
+              Registered Computers: <strong>{rowCount}</strong>
+            </Typography>
+          </div>
+        </div>
         <DataGrid
           loading={loading}
           rows={rows}

@@ -84,19 +84,19 @@ function CentrePage() {
       ),
     },
     { field: "AdminPhone", headerName: "Admin Phone", width: 200 },
-    {
-      field: "createdAt",
-      headerName: "Created At",
-      width: 200,
-      renderCell: (params) => new Date(params.value).toLocaleString(),
-    },
-    {
-      field: "lastCentreUpload",
-      headerName: "Last Centre Upload",
-      width: 200,
-      renderCell: (params) =>
-        params.value ? new Date(params.value).toLocaleString() : "-",
-    },
+    // {
+    //   field: "createdAt",
+    //   headerName: "Created At",
+    //   width: 200,
+    //   renderCell: (params) => new Date(params.value).toLocaleString(),
+    // },
+    // {
+    //   field: "lastCentreUpload",
+    //   headerName: "Last Centre Upload",
+    //   width: 200,
+    //   renderCell: (params) =>
+    //     params.value ? new Date(params.value).toLocaleString() : "-",
+    // },
   ];
 
   const importCentres = async () => {

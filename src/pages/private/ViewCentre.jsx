@@ -49,7 +49,7 @@ function ViewCentre() {
             <div>
               <Button
                 as={Link}
-                to={`/centrecomputers?centre=${id}`}
+                to={`/centrecomputers?centre=${id}&centrename=${centreData.centre.CentreName}`}
                 sx={{ textTransform: "unset", textDecoration: "none" }}
                 endIcon={<KeyboardArrowRight />}
               >
